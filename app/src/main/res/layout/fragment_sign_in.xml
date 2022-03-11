@@ -5,9 +5,51 @@
     android:layout_height="match_parent"
     tools:context=".login.SignInFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:text="회원 가입"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:hint="new id"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:hint="new pw"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:hint="pw 확인"/>
+
+        <Button
+            android:id="@+id/finish_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="finish"/>
+    </LinearLayout>
 
 </FrameLayout>
