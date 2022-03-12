@@ -20,6 +20,11 @@ class LoginFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signInFragment)
         }
 
+        val nextBtn = view.findViewById<Button>(R.id.next_btn)
+        nextBtn.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_mainActivity)
+        }
+
         return view
     }
 }
