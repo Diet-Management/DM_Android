@@ -18,4 +18,8 @@
         android:id="@+id/alertFragment"
         android:name="com.example.dietmanagement.bottomnavigation.AlertFragment"
         android:label="fragment_alert" />
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.example.dietmanagement.bottomnavigation.BoardFragment"
+        android:label="fragment_board" />
 </navigation>
