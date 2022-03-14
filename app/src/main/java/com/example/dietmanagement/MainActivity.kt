@@ -19,18 +19,24 @@ class MainActivity : AppCompatActivity(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
         nav = binding.bottomNavigationView
-        setBottomNav()
+        setBottomNav(navHostFragment)
         popUpMenu()
+
+        val navController = navHostFragment.navController
+        binding.profileImage.setOnClickListener {
+            navController.navigateUp()
+            navController.navigate(R.id.profileFragment)
+        }
     }
 
-    private fun setBottomNav() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
-        val navController = navHostFragment.navController
+    private fun setBottomNav(navHost: NavHostFragment) {
+        val navController = navHost.navController
         nav.setupWithNavController(navController)
     }
 
-    fun popUpMenu() {
+    private fun popUpMenu() {
         binding.moreVertImage.setOnClickListener {
             val popup = PopupMenu(applicationContext, it)
             menuInflater.inflate(R.menu.more_vert_menu, popup.menu)
