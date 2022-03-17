@@ -6,20 +6,69 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.dietmanagement.R
+import com.example.dietmanagement.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
+
+    private lateinit var binding: FragmentSignInBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_sign_in, container, false)
-        val finishBtn = view.findViewById<Button>(R.id.finish_button)
-        finishBtn.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_loginFragment)
+        binding = FragmentSignInBinding.inflate(inflater, container, false)
+
+        binding.finishButton.setOnClickListener {
+            binding.errorID.visibility = View.INVISIBLE
+            binding.errorPw.visibility = View.INVISIBLE
+            binding.errorPwTest.visibility = View.INVISIBLE
+            checkNewMember()
         }
 
-        return view
+        binding.backLogin.setOnClickListener {
+            Navigation.findNavController(binding.root).navigate(R.id.action_signInFragment_to_loginFragment)
+        }
+
+        return binding.root
+    }
+
+    // 회원가입 예외처리
+    private fun checkNewMember() {
+        val newId = binding.editTextNewId.text.toString()
+        val errorId = binding.errorID
+
+        val newPw = binding.editTextNewPw.text.toString()
+        val errorPw = binding.errorPw
+
+        val newPwTest = binding.editTextNewPwTest.text.toString()
+        val errorPwTest = binding.errorPwTest
+
+        if (newId.isEmpty()) {
+            errorId.visibility = View.VISIBLE
+        } else if (newId.length < 5) {
+            errorId.text = "※ ID는 5글자 이상이어야 합니다."
+            errorId.visibility = View.VISIBLE
+        }
+
+        else if (newPw.isEmpty()) {
+            errorPw.visibility = View.VISIBLE
+        } else if (newPw.length < 8) {
+            errorPw.text = "※ PW는 8글자 이상이어야 합니다."
+            errorPw.visibility = View.VISIBLE
+        }
+
+        else if (newPwTest.isEmpty()) {
+            errorPwTest.visibility = View.VISIBLE
+        } else if (!newPwTest.equals(newPw)) {
+            errorPwTest.text = "※ PW확인은 PW와 같아야 합니다."
+            errorPwTest.visibility = View.VISIBLE
+        } else {
+            Toast.makeText(context, "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+            Navigation.findNavController(binding.root).navigate(R.id.action_signInFragment_to_loginFragment)
+        }
+
+
     }
 }

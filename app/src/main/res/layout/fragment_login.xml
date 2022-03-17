@@ -33,6 +33,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poor_story_regular"
                 android:hint="ID"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
+                android:fontFamily="@font/poor_story_regular"
                 android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>
