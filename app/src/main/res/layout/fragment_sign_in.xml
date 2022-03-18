@@ -40,7 +40,8 @@
                 android:id="@+id/edit_text_new_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="new ID"
+                android:hint="new Email"
+                android:inputType="textEmailAddress"
                 android:fontFamily="@font/poor_story_regular"/>
         </com.google.android.material.textfield.TextInputLayout>
         <TextView

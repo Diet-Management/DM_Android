@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dm_bg"
+    tools:context=".login.FindPwFragment">
+
+    <ImageView
+        android:id="@+id/back_find_id_login"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_keyboard_backspace_24"
+        android:layout_margin="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poor_story_regular"
+            android:text="비밀번호 찾기"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_new_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email address"
+                android:inputType="textEmailAddress"
+                android:fontFamily="@font/poor_story_regular"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_background"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:text="찾기"/>
+
+    </LinearLayout>
+
+</FrameLayout>

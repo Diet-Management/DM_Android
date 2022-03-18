@@ -34,7 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poor_story_regular"
-                android:hint="ID"/>
+                android:inputType="textEmailAddress"
+                android:hint="Email"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -83,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poor_story_regular"
-            android:text="아이디를 잃어버리셨나요?"
+            android:text="비밀번호를 잃어버리셨나요?"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"/>
     </LinearLayout>

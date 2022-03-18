@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.dietmanagement.R
@@ -47,8 +46,8 @@ class SignInFragment : Fragment() {
 
         if (newId.isEmpty()) {
             errorId.visibility = View.VISIBLE
-        } else if (newId.length < 5) {
-            errorId.text = "※ ID는 5글자 이상이어야 합니다."
+        } else if (!newId.contains("@")) {
+            errorId.text = "※ Email 양식으로 입력하세요."
             errorId.visibility = View.VISIBLE
         }
 

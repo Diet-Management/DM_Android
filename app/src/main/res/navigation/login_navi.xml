@@ -25,10 +25,18 @@
         <action
             android:id="@+id/action_loginFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_loginFragment_to_findIdFragment"
+            app:destination="@id/findPwFragment" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"
         android:name="com.example.dietmanagement.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/findPwFragment"
+        android:name="com.example.dietmanagement.login.FindPwFragment"
+        android:label="fragment_find_id"
+        tools:layout="@layout/fragment_find_pw" />
 </navigation>
