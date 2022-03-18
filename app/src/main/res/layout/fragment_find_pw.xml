@@ -37,21 +37,82 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_new_id"
+                android:id="@+id/edit_text_new_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email address"
                 android:inputType="textEmailAddress"
                 android:fontFamily="@font/poor_story_regular"/>
         </com.google.android.material.textfield.TextInputLayout>
-        
+
+        <TextView
+            android:id="@+id/notice_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="※ 이메일을 입력해주세요."
+            android:fontFamily="@font/poor_story_regular"
+            android:textColor="#ff0000"
+            android:textSize="16sp"
+            android:layout_marginStart="45dp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:layout_marginTop="5dp"/>
+
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/pw_certification_button"
             android:layout_width="180dp"
             android:layout_height="40dp"
             android:background="@drawable/button_background"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:text="찾기"/>
+
+        <LinearLayout
+            android:id="@+id/certification_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:visibility="invisible"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_email_certification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="인증 번호"
+                    android:inputType="number"
+                    android:fontFamily="@font/poor_story_regular"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/notice_text_certification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="※ 인증번호를 입력해주세요."
+                android:fontFamily="@font/poor_story_regular"
+                android:textColor="#ff0000"
+                android:textSize="16sp"
+                android:layout_marginStart="45dp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                android:layout_marginTop="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/success_certification_button"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_background2"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:text="인증하기"/>
+        </LinearLayout>
 
     </LinearLayout>
 
