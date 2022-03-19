@@ -67,7 +67,6 @@ class FindPwFragment : Fragment() {
 
         dialog.show()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
         dialog.findViewById<ImageView>(R.id.back_dialog).setOnClickListener {
             dialog.dismiss()
