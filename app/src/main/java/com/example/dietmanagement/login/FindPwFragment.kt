@@ -1,12 +1,17 @@
 package com.example.dietmanagement.login
 
+import android.app.Dialog
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.dietmanagement.R
 import com.example.dietmanagement.databinding.FragmentFindPwBinding
@@ -14,6 +19,7 @@ import com.example.dietmanagement.databinding.FragmentFindPwBinding
 class FindPwFragment : Fragment() {
 
     private lateinit var binding: FragmentFindPwBinding
+    private lateinit var dialog: Dialog
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -45,12 +51,30 @@ class FindPwFragment : Fragment() {
             binding.successCertificationButton.setOnClickListener {
                 if (binding.editTextEmailCertification.text.toString().isNotEmpty()) {
                     Toast.makeText(context, "인증되었습니다.", Toast.LENGTH_SHORT).show()
-                    // 비밀번호 바꾸는 화면으로 넘어가기
+                    openCustomDialog()
                 } else {
                     binding.noticeTextCertification.visibility = View.VISIBLE
                 }
                 // 메일 인증 코드
             }
+        }
+    }
+
+    private fun openCustomDialog() {
+        dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.custom_dialog_change_pw)
+
+        dialog.show()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        dialog.findViewById<ImageView>(R.id.back_dialog).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.findViewById<AppCompatButton>(R.id.select_new_pw_button).setOnClickListener {
+            dialog.dismiss()
         }
     }
 
