@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.dietmanagement.databinding.ActivityMainBinding
