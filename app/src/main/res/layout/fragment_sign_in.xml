@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             android:textSize="35dp"
             android:textStyle="bold"
-            android:fontFamily="@font/poor_story_regular"
             android:text="회원 가입"
             android:layout_gravity="center"
             android:layout_marginTop="120dp" />
@@ -42,8 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="new Email"
-                android:inputType="textEmailAddress"
-                android:fontFamily="@font/poor_story_regular"/>
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/error_ID"
@@ -68,8 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="new Password"
-                android:inputType="textPassword"
-                android:fontFamily="@font/poor_story_regular"/>
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/error_pw"
@@ -94,8 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="PW 확인"
-                android:inputType="textPassword"
-                android:fontFamily="@font/poor_story_regular"/>
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/error_pw_test"
