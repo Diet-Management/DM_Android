@@ -12,6 +12,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/drawable/home_post_info_background.xml" value="0.1455" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/drawable/home_title_background.xml" value="0.1455" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/drawable/home_title_background2.xml" value="0.1455" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.1455" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/drawable/menu_selector_color.xml" value="0.1455" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/activity_main.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/activtiy_login.xml" value="0.24947916666666667" />
@@ -24,6 +25,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/fragment_main.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/fragment_profile.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/fragment_sign_in.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/post_info_recyclerview_item.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/menu/bottom_navi_menu.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/menu/more_vert_menu.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/menu/option_menu.xml" value="0.24947916666666667" />
