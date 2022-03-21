@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/dm_bg"
     tools:context=".login.SignInFragment">
 
@@ -59,6 +60,7 @@
             android:layout_marginTop="55dp"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
+            app:endIconMode="password_toggle"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -66,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="new Password"
+                android:inputType="textPassword"
                 android:fontFamily="@font/poor_story_regular"/>
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
@@ -83,6 +86,7 @@
             android:layout_marginTop="55dp"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
+            app:endIconMode="password_toggle"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -90,6 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="PW 확인"
+                android:inputType="textPassword"
                 android:fontFamily="@font/poor_story_regular"/>
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
