@@ -37,7 +37,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_new_id"
+                android:id="@+id/edit_text_new_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="new Email"
@@ -55,7 +55,24 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_new_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--text view-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             app:endIconMode="password_toggle"
@@ -80,7 +97,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="35dp"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             app:endIconMode="password_toggle"
