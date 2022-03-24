@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 // api 인터페이스가 호출 가능한 객체로 변환되는 클래스로 만들어줌
 object RetrofitBuilder {
-    var dmService: DmService
+    var dmJoinService: DmJoinService
     val url: String = "http://13.124.121.122:8081/"
 
     init {
@@ -16,6 +16,6 @@ object RetrofitBuilder {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        dmService = retrofit.create(DmService::class.java)
+        dmJoinService = retrofit.create(DmJoinService::class.java)
     }
 }
