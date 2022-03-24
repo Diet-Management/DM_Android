@@ -28,10 +28,19 @@
             android:layout_gravity="center"
             android:layout_marginTop="120dp" />
 
+        <Spinner
+            android:id="@+id/spinner_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/spinner_theme"
+            android:spinnerMode="dropdown"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="30dp"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -44,10 +53,10 @@
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
-            android:id="@+id/error_ID"
+            android:id="@+id/error_Email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="※ ID는 필수 입력사항입니다"
+            android:text="※ Email은 필수 입력사항입니다"
             android:visibility="invisible"
             android:textColor="#ff0000"
             android:layout_marginStart="45dp"/>
@@ -66,8 +75,14 @@
                 android:layout_height="wrap_content"
                 android:hint="name" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <!--text view-->
+        <TextView
+            android:id="@+id/error_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="※ Name은 필수 입력사항입니다"
+            android:visibility="invisible"
+            android:textColor="#ff0000"
+            android:layout_marginStart="45dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
