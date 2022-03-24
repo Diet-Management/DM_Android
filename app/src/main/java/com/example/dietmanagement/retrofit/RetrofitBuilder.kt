@@ -18,5 +18,4 @@ object RetrofitBuilder {
 
         dmService = retrofit.create(DmService::class.java)
     }
-
 }
