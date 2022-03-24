@@ -41,7 +41,7 @@ class FindPwFragment : Fragment() {
 
     private fun checkCertification() {
 
-        val newEmailResult = binding.editTextNewEmail.text.toString()
+        val newEmailResult = binding.editTextEmail.text.toString()
         if (!newEmailResult.contains("@") || newEmailResult.isEmpty()) {
             binding.noticeText.visibility = View.VISIBLE
         } else {

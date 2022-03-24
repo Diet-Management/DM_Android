@@ -1,6 +1,7 @@
 package com.example.dietmanagement.login
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.dietmanagement.R
+import com.example.dietmanagement.data.JoinData
 import com.example.dietmanagement.databinding.FragmentSignInBinding
+import com.example.dietmanagement.retrofit.RetrofitBuilder
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignInFragment : Fragment() {
 
@@ -20,10 +27,21 @@ class SignInFragment : Fragment() {
         binding = FragmentSignInBinding.inflate(inflater, container, false)
 
         binding.finishButton.setOnClickListener {
-            binding.errorID.visibility = View.INVISIBLE
+            binding.errorEmail.visibility = View.INVISIBLE
+            binding.errorName.visibility = View.INVISIBLE
             binding.errorPw.visibility = View.INVISIBLE
             binding.errorPwTest.visibility = View.INVISIBLE
-            checkNewMember()
+
+            val email = binding.editTextNewEmail.text.toString()
+            val name = binding.editTextNewName.text.toString()
+            val pw = binding.editTextNewPw.text.toString()
+            if (email.isNotEmpty() && name.isNotEmpty() && pw.isNotEmpty()) {
+                // data 처리
+                val data = JoinData(email, name, pw, "LIGHT")
+                checkJoin(data)
+            } else {
+                checkNewMember()
+            }
         }
 
         binding.backLogin.setOnClickListener {
@@ -33,10 +51,43 @@ class SignInFragment : Fragment() {
         return binding.root
     }
 
+    private fun checkJoin(data: JoinData) {
+        RetrofitBuilder.dmService.joinResponse(data).enqueue(object : Callback<JSONObject> {
+            override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
+                Log.d("TAG", "onResponse: ${response.raw()}")
+                when {
+                    response.body() != null -> {
+                        Log.d("SUCCESS11", "onResponse raw: ${response.raw().networkResponse}")
+                        Log.d("SUCCESS11", "onResponse raw: ${response.headers()}")
+                        Toast.makeText(context, "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        Navigation.findNavController(binding.root).navigate(R.id.action_signInFragment_to_loginFragment)
+                    }
+                    response.code() == 400 -> {
+                        Toast.makeText(context, "이미 가입한 이메일입니다.", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        val error = response.errorBody()!!.string()
+                        Toast.makeText(context, "회원가입에 실패함", Toast.LENGTH_SHORT).show()
+                        Log.d("ERROR22", "onResponse: $error")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<JSONObject>, t: Throwable) {
+                Log.d("ERROR11", "onFailure: ${t.message.toString()}, $call")
+                Toast.makeText(context, "회원가입에 실패함", Toast.LENGTH_SHORT).show()
+                t.printStackTrace()
+            }
+        })
+    }
+
     // 회원가입 예외처리
     private fun checkNewMember() {
-        val newId = binding.editTextNewId.text.toString()
-        val errorId = binding.errorID
+        val newEmail = binding.editTextNewEmail.text.toString()
+        val errorEmail = binding.errorEmail
+
+        val newName = binding.editTextNewName.text.toString()
+        val errorName = binding.errorName
 
         val newPw = binding.editTextNewPw.text.toString()
         val errorPw = binding.errorPw
@@ -44,11 +95,15 @@ class SignInFragment : Fragment() {
         val newPwTest = binding.editTextNewPwTest.text.toString()
         val errorPwTest = binding.errorPwTest
 
-        if (newId.isEmpty()) {
-            errorId.visibility = View.VISIBLE
-        } else if (!newId.contains("@")) {
-            errorId.text = "※ Email 양식으로 입력하세요."
-            errorId.visibility = View.VISIBLE
+        if (newEmail.isEmpty()) {
+            errorEmail.visibility = View.VISIBLE
+        } else if (!newEmail.contains("@")) {
+            errorEmail.text = "※ Email 양식으로 입력하세요."
+            errorEmail.visibility = View.VISIBLE
+        }
+
+        else if (newName.isEmpty()) {
+            errorName.visibility = View.VISIBLE
         }
 
         else if (newPw.isEmpty()) {
@@ -60,14 +115,14 @@ class SignInFragment : Fragment() {
 
         else if (newPwTest.isEmpty()) {
             errorPwTest.visibility = View.VISIBLE
-        } else if (!newPwTest.equals(newPw)) {
+        } else if (newPwTest != newPw) {
             errorPwTest.text = "※ PW확인은 PW와 같아야 합니다."
             errorPwTest.visibility = View.VISIBLE
         } else {
             Toast.makeText(context, "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-            Navigation.findNavController(binding.root).navigate(R.id.action_signInFragment_to_loginFragment)
         }
 
 
     }
+
 }
