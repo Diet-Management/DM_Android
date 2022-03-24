@@ -1,4 +1,4 @@
-package com.example.dietmanagement.retrofit
+package com.example.data.retrofit
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

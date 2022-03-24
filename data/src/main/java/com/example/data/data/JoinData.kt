@@ -1,4 +1,4 @@
-package com.example.dietmanagement.data
+package com.example.data.data
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,6 +1,6 @@
-package com.example.dietmanagement.retrofit
+package com.example.data.retrofit
 
-import com.example.dietmanagement.data.JoinData
+import com.example.data.data.JoinData
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.Body
