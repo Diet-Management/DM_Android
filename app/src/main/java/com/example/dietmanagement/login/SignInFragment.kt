@@ -23,7 +23,7 @@ class SignInFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         binding = FragmentSignInBinding.inflate(inflater, container, false)
 
         binding.finishButton.setOnClickListener {
@@ -35,9 +35,12 @@ class SignInFragment : Fragment() {
             val email = binding.editTextNewEmail.text.toString()
             val name = binding.editTextNewName.text.toString()
             val pw = binding.editTextNewPw.text.toString()
-            if (email.isNotEmpty() && name.isNotEmpty() && pw.isNotEmpty()) {
+            val checkPw = binding.editTextNewPw.text.toString()
+            val theme = binding.spinnerTheme.selectedItem.toString()
+            if (email.isNotEmpty() && name.isNotEmpty() && pw.isNotEmpty() && checkPw.isNotEmpty()) {
                 // data 처리
-                val data = JoinData(email, name, pw, "LIGHT")
+                val data = JoinData(email, name, pw, theme)
+                Log.d("DATA", "onCreateView joinData: $data")
                 checkJoin(data)
             } else {
                 checkNewMember()
@@ -51,8 +54,9 @@ class SignInFragment : Fragment() {
         return binding.root
     }
 
+    // 서버 접속
     private fun checkJoin(data: JoinData) {
-        RetrofitBuilder.dmService.joinResponse(data).enqueue(object : Callback<JSONObject> {
+        RetrofitBuilder.dmJoinService.joinResponse(data).enqueue(object : Callback<JSONObject> {
             override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
                 Log.d("TAG", "onResponse: ${response.raw()}")
                 when {
@@ -118,11 +122,7 @@ class SignInFragment : Fragment() {
         } else if (newPwTest != newPw) {
             errorPwTest.text = "※ PW확인은 PW와 같아야 합니다."
             errorPwTest.visibility = View.VISIBLE
-        } else {
-            Toast.makeText(context, "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
         }
 
-
     }
-
 }
