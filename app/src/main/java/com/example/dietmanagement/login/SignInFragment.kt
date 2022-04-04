@@ -2,17 +2,17 @@ package com.example.dietmanagement.login
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.example.dietmanagement.R
 import com.example.data.data.JoinData
-import com.example.dietmanagement.databinding.FragmentSignInBinding
 import com.example.data.retrofit.RetrofitBuilder
-import com.google.gson.Gson
+import com.example.dietmanagement.R
+import com.example.dietmanagement.databinding.FragmentSignInBinding
+import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,29 +58,31 @@ class SignInFragment : Fragment() {
     // 서버 접속
     private fun checkJoin(data: JoinData) {
         RetrofitBuilder.dmJoinService.joinResponse(data).enqueue(object : Callback<JSONObject> {
-            override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
-                Log.d("TAG", "onResponse: ${response.raw()}")
-                Log.d("SUCCESS", "onResponse response: ${response.message()}")
-                Log.d("SUCCESS", "onResponse call: ${call.request()}")
-                if (response.body() != null) {
-                    Log.d("SUCCESS", "onResponse raw: ${response.raw()}")
-                    Log.d("SUCCESS", "onResponse body: ${response.body()}")
-                    val gson = Gson()
-                    Log.d("SUCCESS", "onResponse body: ${gson.toJson(response.body())}")
+                override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
+                    if (response.body() != null) {
+                        Log.d("SUCCESS", "onResponse raw: ${response.raw()}")
+                        Log.d("SUCCESS", "onResponse body: ${response.body()}")
 
-                    Toast.makeText(context, "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                    Navigation.findNavController(binding.root).navigate(R.id.action_signInFragment_to_loginFragment)
-                } else if (response.code() == 400) {
-                    val errorCode = response.errorBody().toString()
-                    Log.d("400ERROR", "onResponse raw: $errorCode")
-                    Toast.makeText(context, "이미 가입한 이메일입니다.", Toast.LENGTH_SHORT).show()
-                } else {
+                        try {
+                            val jsonObject = JSONObject(response.body().toString())
+                            Log.d("SUCCESS", "onResponse jsonObj body: $jsonObject")
+                        } catch (e: JSONException) {
+                            e.printStackTrace()
+                        }
 
-                    val error = response.errorBody()!!.string()
-                    Toast.makeText(context, "회원가입에 실패함", Toast.LENGTH_SHORT).show()
-                    Log.d("ERROR", "onResponse: $error")
+                        Toast.makeText(context, "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        Navigation.findNavController(binding.root).navigate(R.id.action_signInFragment_to_loginFragment)
+                    } else if (response.code() == 400) {
+                        val errorCode = response.errorBody().toString()
+                        Log.d("400ERROR", "onResponse raw: $errorCode")
+                        Toast.makeText(context, "이미 가입한 이메일입니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+
+                        val error = response.errorBody()!!.string()
+                        Toast.makeText(context, "회원가입에 실패함", Toast.LENGTH_SHORT).show()
+                        Log.d("ERROR", "onResponse: $error")
+                    }
                 }
-            }
 
             override fun onFailure(call: Call<JSONObject>, t: Throwable) {
                 Log.d("ERROR11", "onFailure: ${t.message.toString()}, $call")

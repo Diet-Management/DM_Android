@@ -19,6 +19,10 @@ class BoardFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentBoardBinding.inflate(inflater, container, false)
+
+        binding.addPostButton.setOnClickListener {
+
+        }
         return binding.root
     }
 }
