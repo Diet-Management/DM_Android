@@ -15,6 +15,17 @@
         android:textSize="35sp"
         android:gravity="center"/>
 
+    <Spinner
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinner_post_add"
+        android:spinnerMode="dropdown"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+
+
     <ImageView
         android:id="@+id/add_post_main_image"
         android:layout_width="350dp"
