@@ -16,6 +16,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/drawable/menu_selector_color.xml" value="0.1455" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/drawable/post_add_button_background.xml" value="0.1455" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/a.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/activity_add_post.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/activtiy_login.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/custom_dialog_change_pw.xml" value="0.24947916666666667" />
@@ -26,6 +27,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/fragment_main.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/fragment_profile.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/fragment_second.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/fragment_sign_in.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/layout/post_info_recyclerview_item.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/DietManagement/app/src/main/res/menu/bottom_navi_menu.xml" value="0.24947916666666667" />

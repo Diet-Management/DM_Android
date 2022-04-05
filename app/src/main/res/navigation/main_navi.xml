@@ -21,5 +21,14 @@
     <fragment
         android:id="@+id/boardFragment"
         android:name="com.example.dietmanagement.bottomnavigation.BoardFragment"
-        android:label="fragment_board" />
+        android:label="fragment_board" >
+        <action
+            android:id="@+id/action_boardFragment_to_addPostActivity"
+            app:destination="@id/addPostActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/addPostActivity"
+        android:name="com.example.dietmanagement.login.activity.AddPostActivity"
+        android:label="activity_add_post"
+        tools:layout="@layout/activity_add_post" />
 </navigation>

@@ -1,6 +1,6 @@
-package com.example.dietmanagement.retrofit
+package com.example.data.retrofit
 
-import com.example.dietmanagement.data.JoinData
+import com.example.data.data.JoinData
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.Body
@@ -11,4 +11,5 @@ interface DmJoinService {
     fun joinResponse (
         @Body user: JoinData
     ): Call<JSONObject> // 정보를 보내야 하기 때문에
+    // TODO :: ResponseBody 사용해 보기
 }
