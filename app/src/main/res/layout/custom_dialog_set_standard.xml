@@ -32,7 +32,7 @@
             android:id="@+id/standard_radio_group1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
@@ -40,8 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="없음"
-                android:checked="true"/>
+                android:text="없음" />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -65,6 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:layout_marginEnd="10dp"
                 android:text="자유" />
         </RadioGroup>
 
@@ -81,22 +81,20 @@
             android:id="@+id/standard_radio_group2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:layout_gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="30dp">
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="없음"
-                    android:checked="true"/>
+                    android:text="없음" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -135,21 +133,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
+            android:layout_margin="20dp"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="180dp"
+                android:id="@+id/standard_apply"
+                android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:background="@drawable/button_background"
                 android:layout_marginEnd="20dp"
                 android:text="적용"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="180dp"
+                android:id="@+id/standard_cancel"
+                android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:background="@drawable/button_background2"
                 android:text="취소"/>
         </LinearLayout>
+
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
