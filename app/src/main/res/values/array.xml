@@ -16,6 +16,13 @@
         <item>자유</item>
     </string-array>
 
+    <string-array name="spinner">
+        <item>최신순</item>
+        <item>오래된순</item>
+        <item>좋아요순</item>
+        <item>추천순</item>
+    </string-array>
+
     <string-array name="spinner_theme">
         <item>LIGHT</item>
         <item>DARK</item>
