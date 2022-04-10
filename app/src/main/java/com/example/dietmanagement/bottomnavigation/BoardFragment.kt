@@ -4,14 +4,16 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import androidx.appcompat.widget.AppCompatButton
+import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.dietmanagement.R
+import com.example.dietmanagement.databinding.CustomDialogSetStandardBinding
 import com.example.dietmanagement.databinding.FragmentBoardBinding
 
 class BoardFragment : Fragment() {
@@ -38,16 +40,30 @@ class BoardFragment : Fragment() {
     private fun setStandard() {
         dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.custom_dialog_set_standard)
+
+        val dialogBinding: CustomDialogSetStandardBinding = CustomDialogSetStandardBinding.inflate(
+            LayoutInflater.from(context))
+        dialog.setContentView(dialogBinding.root)
 
         dialog.show()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        dialog.findViewById<AppCompatButton>(R.id.standard_apply).setOnClickListener {
+        dialogBinding.standardApply.setOnClickListener {
+            val selectedRadio1 = dialogBinding.standardRadioGroup1.checkedRadioButtonId
+            val selectedRadio2 = dialogBinding.standardRadioGroup2.checkedRadioButtonId
+
+            Log.d("Diet Management", "setStandard selected radio button: $selectedRadio1, $selectedRadio2")
+
+            val radioBtn1 = dialog.findViewById<View>(selectedRadio1) as RadioButton?
+            val radioBtn2 = dialog.findViewById<View>(selectedRadio2) as RadioButton?
+
+            Log.d("Diet Management", "setStandard: ${radioBtn1?.text}/${radioBtn2?.text}")
+
+            binding.standardTextview.text = "${radioBtn1?.text}/${radioBtn2?.text}"
             dialog.dismiss()
         }
 
-        dialog.findViewById<AppCompatButton>(R.id.standard_cancel).setOnClickListener {
+        dialogBinding.standardCancel.setOnClickListener {
             dialog.dismiss()
         }
     }
