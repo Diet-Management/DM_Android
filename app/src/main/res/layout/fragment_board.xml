@@ -18,16 +18,29 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/post_info_recyclerview_item"/>
 
-    <Spinner
-        android:id="@+id/spinner_filter"
-        android:layout_width="135dp"
+    <LinearLayout
+        android:id="@+id/setting_standard"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/spinner_classify"
         android:layout_marginStart="30dp"
-        android:spinnerMode="dropdown"
         app:layout_constraintBottom_toTopOf="@+id/post_recyclerview"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/standard_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="분류 기준"
+            android:textSize="17sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_drop_down_24"/>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/add_post_button"

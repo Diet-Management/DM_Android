@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="spinner_classify">
-        <item>-분류 기준-</item>
-        <item>아이템 1</item>
-        <item>아이템 2</item>
-        <item>아이템 3</item>
-        <item>아이템 4</item>
-    </string-array>
-
     <string-array name="spinner_post_add">
         <item>-기준-</item>
         <item>식단</item>
