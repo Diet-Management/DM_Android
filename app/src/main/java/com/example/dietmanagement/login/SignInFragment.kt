@@ -57,7 +57,7 @@ class SignInFragment : Fragment() {
 
     // 서버 접속
     private fun checkJoin(data: JoinData) {
-        RetrofitBuilder.dmJoinService.joinResponse(data).enqueue(object : Callback<JSONObject> {
+        RetrofitBuilder.dmApiService.joinResponse(data).enqueue(object : Callback<JSONObject> {
                 override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
                     if (response.body() != null) {
                         Log.d("SUCCESS", "onResponse raw: ${response.raw()}")
