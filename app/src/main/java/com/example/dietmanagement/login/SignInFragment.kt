@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.data.data.JoinData
-import com.example.data.retrofit.RetrofitBuilder
+import com.example.data.retrofit.builder.DmJoinServiceBuilder
 import com.example.dietmanagement.R
 import com.example.dietmanagement.databinding.FragmentSignInBinding
 import org.json.JSONException
@@ -57,32 +57,31 @@ class SignInFragment : Fragment() {
 
     // 서버 접속
     private fun checkJoin(data: JoinData) {
-        RetrofitBuilder.dmApiService.joinResponse(data).enqueue(object : Callback<JSONObject> {
-                override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
-                    if (response.body() != null) {
-                        Log.d("SUCCESS", "onResponse raw: ${response.raw()}")
-                        Log.d("SUCCESS", "onResponse body: ${response.body()}")
+        DmJoinServiceBuilder.dmApiService.joinResponse(data).enqueue(object : Callback<JSONObject> {
+            override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
+                if (response.body() != null) {
+                    Log.d("SUCCESS", "onResponse raw: ${response.raw()}")
+                    Log.d("SUCCESS", "onResponse body: ${response.body()}")
 
-                        try {
-                            val jsonObject = JSONObject(response.body().toString())
-                            Log.d("SUCCESS", "onResponse jsonObj body: $jsonObject")
-                        } catch (e: JSONException) {
-                            e.printStackTrace()
-                        }
-
-                        Toast.makeText(context, "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                        Navigation.findNavController(binding.root).navigate(R.id.action_signInFragment_to_loginFragment)
-                    } else if (response.code() == 400) {
-                        val errorCode = response.errorBody().toString()
-                        Log.d("400ERROR", "onResponse raw: $errorCode")
-                        Toast.makeText(context, "이미 가입한 이메일입니다.", Toast.LENGTH_SHORT).show()
-                    } else {
-
-                        val error = response.errorBody()!!.string()
-                        Toast.makeText(context, "회원가입에 실패함", Toast.LENGTH_SHORT).show()
-                        Log.d("ERROR", "onResponse: $error")
+                    try {
+                        val jsonObject = JSONObject(response.body().toString())
+                        Log.d("SUCCESS", "onResponse jsonObj body: $jsonObject")
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
                     }
+
+                    Toast.makeText(context, "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                    Navigation.findNavController(binding.root).navigate(R.id.action_signInFragment_to_loginFragment)
+                } else if (response.code() == 400) {
+                    val errorCode = response.errorBody().toString()
+                    Log.d("400ERROR", "onResponse raw: $errorCode")
+                    Toast.makeText(context, "이미 가입한 이메일입니다.", Toast.LENGTH_SHORT).show()
+                } else {
+                    val error = response.errorBody()!!.string()
+                    Toast.makeText(context, "회원가입에 실패함", Toast.LENGTH_SHORT).show()
+                    Log.d("ERROR", "onResponse: $error")
                 }
+            }
 
             override fun onFailure(call: Call<JSONObject>, t: Throwable) {
                 Log.d("ERROR11", "onFailure: ${t.message.toString()}, $call")
