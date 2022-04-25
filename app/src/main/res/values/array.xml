@@ -10,6 +10,6 @@
 
     <string-array name="spinner_theme">
         <item>LIGHT</item>
-        <item>DARK</item>
+        <item>BLACK</item>
     </string-array>
 </resources>
