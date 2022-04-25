@@ -52,7 +52,12 @@ class LoginFragment : Fragment() {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.body() != null) {
                     try {
-                        Log.d("SUCCESS", "onResponse body: ${response.body()!!.string()}")
+                        val json = response.body()!!.string()
+                        Log.d("SUCCESS", "onResponse body: $json")
+                        val jsonObject = JSONObject(json)
+                        val data = jsonObject.getString("data")
+                        val dataJsonOption = JSONObject(data)
+                        Log.d("JSONData", "memberIdx: ${dataJsonOption.getString("memberIdx")}")    // TODO:: 데이터 보내기
                         Navigation.findNavController(binding.root).navigate(R.id.action_loginFragment_to_mainActivity)
                     } catch (e: JSONException) {
                         e.printStackTrace()
