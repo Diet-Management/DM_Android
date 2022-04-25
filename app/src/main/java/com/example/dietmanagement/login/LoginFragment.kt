@@ -5,15 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.data.data.LoginData
-import com.example.data.retrofit.api.DmLoginService
 import com.example.data.retrofit.builder.DmLoginServiceBuilder
 import com.example.dietmanagement.R
 import com.example.dietmanagement.databinding.FragmentLoginBinding
+import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -49,11 +48,11 @@ class LoginFragment : Fragment() {
     }
 
     private fun checkLogin(user: LoginData) {
-        DmLoginServiceBuilder.dmLoginService.loginResponse(user).enqueue(object : Callback<JSONObject> {
-            override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
+        DmLoginServiceBuilder.dmLoginService.loginResponse(user).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.body() != null) {
                     try {
-                        Log.d("SUCCESS", "onResponse body: $response")
+                        Log.d("SUCCESS", "onResponse body: ${response.body()!!.string()}")
                         Navigation.findNavController(binding.root).navigate(R.id.action_loginFragment_to_mainActivity)
                     } catch (e: JSONException) {
                         e.printStackTrace()
@@ -66,7 +65,7 @@ class LoginFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<JSONObject>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 

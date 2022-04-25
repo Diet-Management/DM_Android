@@ -80,6 +80,8 @@ class SignInFragment : Fragment() {
                     val error = response.errorBody()!!.string()
                     Toast.makeText(context, "회원가입에 실패함", Toast.LENGTH_SHORT).show()
                     Log.d("ERROR", "onResponse: $error")
+                    Log.d("ERROR", "onResponse error code: ${response.code()}")
+                    Log.d("ERROR", "onResponse error: ${response.message()}")
                 }
             }
 
