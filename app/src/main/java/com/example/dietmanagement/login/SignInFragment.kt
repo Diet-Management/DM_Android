@@ -12,6 +12,7 @@ import com.example.data.data.JoinData
 import com.example.data.retrofit.builder.DmJoinServiceBuilder
 import com.example.dietmanagement.R
 import com.example.dietmanagement.databinding.FragmentSignInBinding
+import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -57,11 +58,10 @@ class SignInFragment : Fragment() {
 
     // 서버 접속
     private fun checkJoin(data: JoinData) {
-        DmJoinServiceBuilder.dmApiService.joinResponse(data).enqueue(object : Callback<JSONObject> {
-            override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
+        DmJoinServiceBuilder.dmApiService.joinResponse(data).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.body() != null) {
-                    Log.d("SUCCESS", "onResponse raw: ${response.raw()}")
-                    Log.d("SUCCESS", "onResponse body: ${response.body()}")
+                    Log.d("SUCCESS", "onResponse body: ${response.body()!!.string()}")
 
                     try {
                         val jsonObject = JSONObject(response.body().toString())
@@ -85,7 +85,7 @@ class SignInFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<JSONObject>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.d("ERROR11", "onFailure: ${t.message.toString()}, $call")
                 Toast.makeText(context, "회원가입에 실패함", Toast.LENGTH_SHORT).show()
                 t.printStackTrace()

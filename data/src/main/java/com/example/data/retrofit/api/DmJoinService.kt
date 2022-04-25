@@ -1,9 +1,7 @@
 package com.example.data.retrofit.api
 
 import com.example.data.data.JoinData
-import com.example.data.data.LoginData
-import com.google.gson.JsonObject
-import org.json.JSONObject
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -12,6 +10,5 @@ interface DmJoinService {
     @POST("v1/member/join")
     fun joinResponse (
         @Body user: JoinData
-    ): Call<JSONObject> // 정보를 보내야 하기 때문에
-    // TODO :: ResponseBody 사용해 보기
+    ): Call<ResponseBody> // 정보를 보내야 하기 때문에
 }
