@@ -1,5 +1,6 @@
 package com.example.dietmanagement.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.data.data.LoginData
 import com.example.data.retrofit.builder.DmLoginServiceBuilder
+import com.example.dietmanagement.MainActivity
 import com.example.dietmanagement.R
 import com.example.dietmanagement.databinding.FragmentLoginBinding
 import okhttp3.ResponseBody
@@ -54,11 +56,15 @@ class LoginFragment : Fragment() {
                     try {
                         val json = response.body()!!.string()
                         Log.d("SUCCESS", "onResponse body: $json")
+
                         val jsonObject = JSONObject(json)
                         val data = jsonObject.getString("data")
                         val dataJsonOption = JSONObject(data)
-                        Log.d("JSONData", "memberIdx: ${dataJsonOption.getString("memberIdx")}")    // TODO:: 데이터 보내기
-                        Navigation.findNavController(binding.root).navigate(R.id.action_loginFragment_to_mainActivity)
+                        Log.d("JSONData", "memberIdx: ${dataJsonOption.getString("memberIdx")}")
+
+                        val intent = Intent(context, MainActivity::class.java).putExtra("memberIdx", dataJsonOption.getString("memberIdx"))
+                        startActivity(intent)
+
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
@@ -71,7 +77,7 @@ class LoginFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(context, "아이디 혹은 비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show()
             }
 
         })
