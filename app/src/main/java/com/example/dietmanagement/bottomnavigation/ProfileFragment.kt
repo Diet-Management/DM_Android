@@ -18,6 +18,8 @@ class ProfileFragment : Fragment() {
         Log.d("TAG", "onCreateView extra: ${arguments?.getString("memberIdx")}")
 
         binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
+
+        val memberIdx = arguments?.getString("memberIdx")
         return binding.root
     }
 }

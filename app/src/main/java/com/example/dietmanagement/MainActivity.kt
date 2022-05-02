@@ -16,7 +16,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
 
-    lateinit var nav: BottomNavigationView
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,18 +23,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener(this)
         supportFragmentManager.beginTransaction().add(R.id.linear_main, MainFragment()).commit()
-
-        val fragment = MainFragment()
-        val memberIdx = intent.getStringExtra("memberIdx")
-        if (memberIdx != null) {
-            fragment.apply {
-                this.arguments = savedInstanceState.apply {
-                    this?.putString("memberIdx", memberIdx.toString())
-                }
-            }
-            Log.d("INTENT", "onCreate intent putExtra: $memberIdx")
-        }
 
         popUpMenu()
 
@@ -45,22 +34,25 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
         when(item.itemId) {
-            R.id.homeFragment -> {
+            R.id.home_Fragment -> {
                 supportFragmentManager.beginTransaction().replace(R.id.linear_main, MainFragment()).commitAllowingStateLoss()
                 return true
             }
-            R.id.boardFragment -> {
+            R.id.board_Fragment -> {
                 supportFragmentManager.beginTransaction().replace(R.id.linear_main, BoardFragment()).commitAllowingStateLoss()
                 return true
             }
-            R.id.alertFragment -> {
+            R.id.alert_Fragment -> {
                 supportFragmentManager.beginTransaction().replace(R.id.linear_main, AlertFragment()).commitAllowingStateLoss()
                 return true
             }
-            R.id.profileFragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.linear_main, ProfileFragment()).commitAllowingStateLoss()
+            R.id.profile_Fragment -> {
+                supportFragmentManager.beginTransaction().replace(R.id.linear_main, ProfileFragment().apply {
+                    arguments = Bundle().apply {
+                        putString("memberIdx", intent.getStringExtra("memberIdx"))
+                    }
+                }).commitAllowingStateLoss()
                 return true
             }
         }
