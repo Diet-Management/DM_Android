@@ -1,6 +1,6 @@
 package com.example.data.retrofit.api
 
-import com.example.data.data.JoinData
+import com.example.data.data.request.JoinData
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
