@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.example.data.data.JoinData
+import com.example.data.data.request.JoinData
 import com.example.data.retrofit.builder.DmJoinServiceBuilder
 import com.example.dietmanagement.R
 import com.example.dietmanagement.databinding.FragmentSignInBinding

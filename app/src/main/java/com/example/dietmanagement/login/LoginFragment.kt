@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.example.data.data.LoginData
+import com.example.data.data.request.LoginData
 import com.example.data.retrofit.builder.DmLoginServiceBuilder
 import com.example.dietmanagement.MainActivity
 import com.example.dietmanagement.R
