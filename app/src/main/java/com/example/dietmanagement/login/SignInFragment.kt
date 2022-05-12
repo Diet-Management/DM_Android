@@ -1,5 +1,6 @@
 package com.example.dietmanagement.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.example.data.data.request.JoinData
 import com.example.data.retrofit.builder.DmJoinServiceBuilder
 import com.example.dietmanagement.R
 import com.example.dietmanagement.databinding.FragmentSignInBinding
+import com.example.dietmanagement.login.activity.LoginActivity
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
@@ -64,14 +66,14 @@ class SignInFragment : Fragment() {
                     Log.d("SUCCESS", "onResponse body: ${response.body()!!.string()}")
 
                     try {
-                        val jsonObject = JSONObject(response.body().toString())
+                        val jsonObject = response.body().toString()
                         Log.d("SUCCESS", "onResponse jsonObj body: $jsonObject")
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
 
                     Toast.makeText(context, "가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                    Navigation.findNavController(binding.root).navigate(R.id.action_signInFragment_to_loginFragment)
+                    startActivity(Intent(context, LoginActivity::class.java))
                 } else if (response.code() == 400) {
                     val errorCode = response.errorBody().toString()
                     Log.d("400ERROR", "onResponse raw: $errorCode")
