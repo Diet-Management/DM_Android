@@ -60,9 +60,14 @@ class LoginFragment : Fragment() {
                         val jsonObject = JSONObject(json)
                         val data = jsonObject.getString("data")
                         val dataJsonOption = JSONObject(data)
+                        val accessToken = jsonObject.getString("accessToken")
+                        val accessTokenJsonOption = JSONObject(accessToken)
                         Log.d("JSONData", "memberIdx: ${dataJsonOption.getString("memberIdx")}")
+                        Log.d("JSONData", "memberIdx: ${accessTokenJsonOption.getString("accessToken")}")
 
-                        val intent = Intent(context, MainActivity::class.java).putExtra("memberIdx", dataJsonOption.getString("memberIdx"))
+                        val intent = Intent(context, MainActivity::class.java)
+                            .putExtra("memberIdx", dataJsonOption.getString("memberIdx"))
+                            .putExtra("accessToken", accessTokenJsonOption.getString("accessToken"))
                         startActivity(intent)
 
                     } catch (e: JSONException) {
