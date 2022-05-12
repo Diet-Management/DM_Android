@@ -1,18 +1,30 @@
 package com.example.dietmanagement
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.data.data.response.BaseResponse
+import com.example.data.retrofit.api.DmLogoutService
+import com.example.data.retrofit.builder.DmLogoutServiceBuilder
 import com.example.dietmanagement.bottomnavigation.AlertFragment
 import com.example.dietmanagement.bottomnavigation.BoardFragment
 import com.example.dietmanagement.bottomnavigation.MainFragment
 import com.example.dietmanagement.bottomnavigation.ProfileFragment
 import com.example.dietmanagement.databinding.ActivityMainBinding
+import com.example.dietmanagement.login.activity.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import okhttp3.ResponseBody
+import org.json.JSONException
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -66,7 +78,33 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             popup.setOnMenuItemClickListener { p0 ->
                 when (p0?.itemId) {
                     R.id.logout -> {
-                        // TODO :: 로그아웃 로직 만들기
+                        DmLogoutServiceBuilder.dmLogoutService.logoutResponse(intent.getStringExtra("accessToken").toString()).enqueue(object :Callback<BaseResponse> {
+                            override fun onResponse(
+                                call: Call<BaseResponse>,
+                                response: Response<BaseResponse>,
+                            ) {
+                                if (response.body() != null) {
+                                    try {
+                                        val responseBody = response.body().toString()
+                                        Log.d("SUCCESS", "logout response: $response")
+                                        Log.d("SUCCESS", "logout response body: $responseBody")
+                                        Toast.makeText(this@MainActivity, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+                                        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                                    } catch (e: JSONException) {
+                                        Toast.makeText(this@MainActivity, "로그아웃 실패함.", Toast.LENGTH_SHORT).show()
+                                        Log.e("FAIL", "catch logout error: ${e.printStackTrace()}", e.cause)
+                                    }
+                                } else {
+                                    Toast.makeText(this@MainActivity, "로그아웃 실패함.", Toast.LENGTH_SHORT).show()
+                                    Log.d("FAIL", "logout error: ${response.errorBody()}, code: ${response.code()}, message: ${response.message()}")
+                                }
+                            }
+
+                            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                                Log.e("FAIL", "onFailure error: ${t.printStackTrace()}", t.cause)
+                            }
+
+                        })
                     }
                 }
                 false
