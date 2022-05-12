@@ -65,7 +65,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             menuInflater.inflate(R.menu.more_vert_menu, popup.menu)
             popup.setOnMenuItemClickListener { p0 ->
                 when (p0?.itemId) {
-                    R.id.logout -> finish()
+                    R.id.logout -> {
+                        // TODO :: 로그아웃 로직 만들기
+                    }
                 }
                 false
             }
