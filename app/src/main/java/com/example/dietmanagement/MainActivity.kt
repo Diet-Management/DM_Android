@@ -7,11 +7,8 @@ import android.view.MenuItem
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.example.data.data.response.BaseResponse
-import com.example.data.retrofit.api.DmLogoutService
+import com.example.data.retrofit.builder.DmDeleteUserBuilder
 import com.example.data.retrofit.builder.DmLogoutServiceBuilder
 import com.example.dietmanagement.bottomnavigation.AlertFragment
 import com.example.dietmanagement.bottomnavigation.BoardFragment
@@ -78,10 +75,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             popup.setOnMenuItemClickListener { p0 ->
                 when (p0?.itemId) {
                     R.id.logout -> {
-                        DmLogoutServiceBuilder.dmLogoutService.logoutResponse(intent.getStringExtra("accessToken").toString()).enqueue(object :Callback<BaseResponse> {
+                        Log.d("SUCCCESS", "popUpMenu access: ${intent.getStringExtra("accessToken")}")
+                        DmLogoutServiceBuilder.dmLogoutService.logoutResponse(intent.getStringExtra("accessToken").toString(), intent.getStringExtra("refreshToken").toString())
+                            .enqueue(object :Callback<ResponseBody> {
                             override fun onResponse(
-                                call: Call<BaseResponse>,
-                                response: Response<BaseResponse>,
+                                call: Call<ResponseBody>,
+                                response: Response<ResponseBody>,
                             ) {
                                 if (response.body() != null) {
                                     try {
@@ -96,14 +95,36 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                                     }
                                 } else {
                                     Toast.makeText(this@MainActivity, "로그아웃 실패함.", Toast.LENGTH_SHORT).show()
-                                    Log.d("FAIL", "logout error: ${response.errorBody()}, code: ${response.code()}, message: ${response.message()}")
+                                    Log.d("FAIL", "logout error: ${response.errorBody()?.string()}, code: ${response.code()}, message: ${response.message()}")
                                 }
                             }
 
-                            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                                 Log.e("FAIL", "onFailure error: ${t.printStackTrace()}", t.cause)
                             }
 
+                        })
+                    }
+
+                    R.id.del_user -> {
+                        DmDeleteUserBuilder.dmDeleteUserService.deleteUser(intent.getStringExtra("accessToken").toString(), intent.getStringExtra("refreshToken").toString())
+                            .enqueue(object :Callback<ResponseBody> {
+                                override fun onResponse(
+                                    call: Call<ResponseBody>,
+                                    response: Response<ResponseBody>
+                                ) {
+                                    if (response.body() != null) {
+                                        val responseBody = response.body()?.string()
+                                        Log.d("SUCCESS", "onResponse delete user: $responseBody")
+                                        finish()
+                                    } else {
+                                        Toast.makeText(this@MainActivity, "오류 발생", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                                    Toast.makeText(this@MainActivity, "회원탈퇴 실패함", Toast.LENGTH_SHORT).show()
+                                }
                         })
                     }
                 }
