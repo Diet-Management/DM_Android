@@ -6,8 +6,9 @@ import retrofit2.http.DELETE
 import retrofit2.http.Header
 
 interface DmDeleteUserService {
-    @DELETE
+    @DELETE("/v1/member")
     fun deleteUser(
-        @Header("Authorization") accessToken: String
+        @Header("Authorization") accessToken: String,
+        @Header("RefreshToken") refreshToken: String
     ): Call<ResponseBody>
 }
