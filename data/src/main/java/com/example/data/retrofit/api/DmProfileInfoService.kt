@@ -2,6 +2,7 @@ package com.example.data.retrofit.api
 
 import com.example.data.data.response.BaseResponse
 import okhttp3.MultipartBody
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -11,6 +12,6 @@ interface DmProfileInfoService {
     fun getProfile(
         @Header("Authorization") accessToken: String,
         @Header("RefreshToken") refreshToken: String,
-        @Part key: MultipartBody.Part
-    ): Response<BaseResponse>
+        @Part file: MultipartBody.Part
+    ): Call<BaseResponse>
 }
